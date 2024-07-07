@@ -3,32 +3,42 @@
 @tailwind utilities;
 
 @layer utilities {
-	.text-balance {
-		text-wrap: balance;
-	}
+  .text-balance {
+    text-wrap: balance;
+  }
 }
 
 h1,
 .h1-text {
-	@apply text-[32px] font-semibold;
+  @apply text-[32px] font-semibold;
 }
 
 h2,
 .h2-text {
-	@apply text-2xl font-medium;
+  @apply text-2xl font-medium;
 }
 
 h3,
 .h3-text {
-	@apply text-xl font-medium;
+  @apply text-xl font-medium;
 }
 
 h6,
 .h6-text {
-	@apply text-[15px];
+  @apply text-[15px];
 }
 
 p,
 .p-text {
-	@apply text-[13px];
+  @apply text-[13px];
+}
+
+label {
+  @apply text-[15px] text-zinc-900;
+}
+
+@layer components {
+  .table-cell {
+    @apply flex-1 text-center bg-transparent leading-4 text-slate-900;
+  }
 }

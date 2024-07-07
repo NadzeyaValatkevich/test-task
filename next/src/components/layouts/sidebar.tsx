@@ -1,4 +1,32 @@
+'use client'
+
+import { useAuth } from "@/stores/authStore";
+import { usePathname, useRouter } from "next/navigation";
+
+
 const Sidebar = () => {
+	const pathname = usePathname();
+	const router = useRouter();
+
+	const isProductsPage = pathname === '/products';
+	const isAlgorithmsPage = pathname === '/algorithms';
+
+	const role = useAuth(state => state.role);
+	const userName = useAuth(state => state.userName);
+
+	const handleClickLogout = () => {
+		router.replace('/');
+	};
+
+	const handleClickToProduct = () => {
+		router.replace('/products');
+	};
+
+	const handleClickToAlgorithms = () => {
+		router.replace('/algorithms');
+	};
+
+
 	return (
 		<div className='h-screen w-56 bg-slate-100 flex flex-col'>
 			<div className='h1-text flex items-center gap-1 justify-center py-3 text-slate-100 mb-6 bg-gray-800 rounded-br-2xl'>
@@ -23,9 +51,9 @@ const Sidebar = () => {
 			</div>
 			<ul className='p-[10px] flex flex-col gap-4'>
 				<li className='pr-1 relative flex justify-between items-center text-slate-800 font-medium text-xl transition group'>
-					<h3>Товары</h3>
+					<h3 onClick={handleClickToProduct}>Товары</h3>
 					<svg
-						className={`hidden transition-transform duration-300 group-hover:translate-x-1.5`}
+						className={`${isProductsPage ? '' : 'hidden'} transition-transform duration-300 group-hover:translate-x-1.5`}
 						width='20'
 						height='18'
 						viewBox='0 0 20 18'
@@ -40,9 +68,9 @@ const Sidebar = () => {
 					</svg>
 				</li>
 				<li className='pr-1 relative flex justify-between items-center text-slate-800 font-medium text-xl transition group'>
-					<h3>Алгоритмы</h3>
+					<h3 onClick={handleClickToAlgorithms}>Алгоритмы</h3>
 					<svg
-						className={`transition-transform duration-300 group-hover:translate-x-1.5`}
+						className={`${isAlgorithmsPage ? '' : 'hidden'} transition-transform duration-300 group-hover:translate-x-1.5`}
 						width='20'
 						height='18'
 						viewBox='0 0 20 18'
@@ -59,16 +87,16 @@ const Sidebar = () => {
 			</ul>
 			<div className='mt-auto p-5 text-slate-900'>
 				<div className='flex space-x-2 mb-4'>
-					<span className='bg-gray-300 px-2 py-1 rounded text-sm'>
+					<span className={`${role === 'Админ' ? 'bg-gray-400' : 'bg-gray-300'} px-2 py-1 rounded text-sm`}>
 						Админ
 					</span>
-					<span className='bg-gray-300 px-2 py-1 rounded text-sm'>
+					<span className={`${role === 'Пользователь' ? 'bg-gray-400' : 'bg-gray-300'} px-2 py-1 rounded text-sm`}>
 						Пользователь
 					</span>
 				</div>
 				<div className=' w-full flex justify-between'>
-					<h6>Денис Петров</h6>
-					<button>
+					<h6>{userName}</h6>
+					<button onClick={handleClickLogout}>
 						<svg
 							width='18'
 							height='20'
@@ -85,7 +113,7 @@ const Sidebar = () => {
 					</button>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 

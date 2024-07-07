@@ -10,6 +10,18 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"concurrently": "^8.2.2"
+		"axios": "^1.7.2",
+		"concurrently": "^8.2.2",
+		"cookies-next": "^4.2.1",
+		"js-cookie": "^3.0.5",
+		"jsonwebtoken": "^9.0.2",
+		"lucide-react": "^0.399.0",
+		"react-hook-form": "^7.52.0",
+		"react-transition-group": "^4.4.5",
+		"zustand": "^4.5.4"
+	},
+	"devDependencies": {
+		"@types/jsonwebtoken": "^9.0.6",
+		"@types/react-transition-group": "^4.4.10"
 	}
 }
